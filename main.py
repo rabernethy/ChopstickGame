@@ -14,20 +14,20 @@ while True:
         move = input("Enter A Move: ")
         if move.startswith('Attack' or 'attack'):
             # Player attacks with Left Hand
-            if move[7:8] is 'L' or 'l':
-                if move[9:10] is 'L' or 'l':
+            if move[7:8] is ('L' or 'l'):
+                if move[9:10] is ('L' or 'l'):
                     cpuLeft += humanLeft
                     break
-                if move[9:10] is 'R' or 'r':
+                if move[9:10] is ('R' or 'r'):
                     cpuRight += humanLeft
                     break
             # Player Attacks with Right Hand    
-            if move[7:8] is 'R' or 'r':
-                if move[9:10] is 'L' or 'l':
+            if move[7:8] is ('R' or 'r'):
+                if move[9:10] is ('L' or 'l'):
                     cpuLeft += humanRight
                     break
-                if move[9:10] is 'R' or 'r':
-                    cpuRight += humanLeft
+                if move[9:10] is ('R' or 'r'):
+                    cpuRight += humanRight
                     break
         if (move.startswith('Split' or 'split') and (humanLeft != humanRight) and (humanLeft or humanRight == 2) or (humanLeft or humanRight == 4)):
             if (humanLeft or humanRight) == 2:
@@ -45,7 +45,12 @@ while True:
         cpuLeft = 0
     if cpuRight >= 5:
         cpuRight = 0
-    
+        
+    if cpuLeft == 0:
+        if cpuRight == 0:
+            print("Congrats, you won!")
+            break
+
     print("CPU: ", cpuLeft, " ", cpuRight)
     print("You: ", humanLeft, " ", humanRight)
     
@@ -94,10 +99,8 @@ while True:
     if humanRight >= 5:
         humanRight = 0
         
-    # Game Clean Up:
-        if (humanLeft and humanRight) == 0:
+    if humanLeft == 0:
+        if humanRight ==0:
             print("Sorry, you lost.")
             break
-        if (cpuLeft and cpuRight) == 0:
-            print("Congrats, you won!")
-            break
+        
